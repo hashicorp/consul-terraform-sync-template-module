@@ -37,10 +37,10 @@ locals {
   })
 
   # Group service instances by service name
-  # services = {
+  # consul_services = {
   #   "app" = [
   #     {
-  #       "id" = "app"
+  #       "id" = "app-id-01"
   #       "name" = "app"
   #       "node_address" = "192.168.10.10"
   #     }

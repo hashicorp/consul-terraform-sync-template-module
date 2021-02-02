@@ -1,6 +1,18 @@
 #
 # var.services is a required input variable for Consul Terraform Sync
 #
+# An example of the services input value:
+# services = {
+#   "app-id-01.worker-01.dc1" : {
+#     id              = "app-id-01"
+#     name            = "app"
+#     ...
+#   },
+#   "web.worker-01.dc1" : {
+#     ...
+#   }
+# }
+#
 variable "services" {
   description = "Consul services monitored by Consul-Terraform-Sync"
   type = map(
