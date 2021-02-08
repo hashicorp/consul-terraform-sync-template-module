@@ -6,7 +6,7 @@ This repository is a template for structuring a compatible Terraform module for 
 
 The template repository includes:
 * [README](README.tmpl.md) for module documentation
-  * Rename the file README.tmpl.md to README.md to replace this file.
+  * Rename the file [README.tmpl.md](README.tmpl.md) to README.md to replace this file.
   * In the raw markdown of the file, there are HTML comments `<!-- replace -->` to indicate text that can be replaced with documentation for your module. The comments themselves can also be removed.
 * Standard module structure for Consul Terraform Sync
   * [main.tf](main.tf): the primary entry point for the module
@@ -17,3 +17,14 @@ Visit Terraform documentation for detailed information on [creating modules](htt
 A complete example of a compatible Terraform module can be referenced [here](https://registry.terraform.io/modules/CheckPointSW/dynobj-nia/checkpoint/latest).
 
 ## Terraform Resources
+
+Creating integrations for Consul Terraform Sync involves understanding Terraform and Terraform modules.
+
+[terraform.io](https://www.terraform.io/docs/language/index.html) is a great resource for learning Terraform. Below is a curated list of useful Terraform Learn tutorials to help you begin building a module.
+* [Configuration Language](https://learn.hashicorp.com/collections/terraform/configuration-language)
+  * [`local` value](https://learn.hashicorp.com/tutorials/terraform/locals)
+  * [expressions](https://learn.hashicorp.com/tutorials/terraform/expressions?in=terraform/configuration-language)
+  * [`for_each`](https://learn.hashicorp.com/tutorials/terraform/for-each?in=terraform/configuration-language)
+
+Visit the project wiki to view additional resources specific to Consul Terraform Sync and Terraform, like transforming `var.services` and setting up an environment to test compatible modules.
+* https://github.com/hashicorp/consul-terraform-sync-template-module/wiki
