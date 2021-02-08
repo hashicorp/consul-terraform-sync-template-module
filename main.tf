@@ -24,8 +24,9 @@ resource "myprovider_address_group" "consul_service" {
 }
 
 #
-# You can utilize the locals block to manipulate the var.services variable
-# into a data structure for your module.
+# You can utilize the locals block to transform the var.services variable
+# into a data structure for your module. For more examples of common data
+# transformations visit the project wiki.
 #
 # The example below converts var.services to a map of service names to a list
 # of service instances.
