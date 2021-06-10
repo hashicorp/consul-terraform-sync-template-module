@@ -18,9 +18,10 @@ terraform {
 resource "myprovider_address_group" "consul_service" {
   for_each = local.consul_services
 
-  name     = "${var.address_group_prefix}${each.key}"
-  tags     = var.address_group_tags
-  policies = [each.value.cts_user_defined_meta["policy_name"]]
+  name         = "${var.address_group_prefix}${each.key}"
+  description  = format("Address group for: %s", join(", ", keys(var.catalog_services)))
+  tags         = var.address_group_tags
+  policies     = [each.value.cts_user_defined_meta["policy_name"]]
 }
 
 #

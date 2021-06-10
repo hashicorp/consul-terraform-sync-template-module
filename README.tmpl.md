@@ -14,9 +14,9 @@ This Terraform module creates an address group for MyProvider Firewall for each 
 
 <!-- replace template instructions below with your content -->
 
-Describe the feature and set of resources the module manages in this section. For example:
+In this section, describe the feature and set of resources the module manages as well as the expected condition type of a task configured with this module. For example:
 
-The module creates an address group if it does not already exist, and applies an existing policy group to the address group when specified for the service.
+The module creates an address group if it does not already exist, and applies an existing policy group to the address group when specified for the service. The module executes on the catalog-services condition, such that it creates and destroys address groups on service registration and deregistration.
 
 <!-- end -->
 
@@ -61,13 +61,18 @@ List prerequisites and outline detailed steps in this section for users to setup
 
 <!-- begin template instructions replace -->
 
-Highlight any required [input variables](https://consul.io/docs/nia/configuration#variable_files) or [user-defined metadata](https://consul.io/docs/nia/configuration#cts_user_defined_meta) and provide an example configuration for Consul Terraform Sync for your module.
+Highlight any required [intermediate input variables](https://consul.io/docs/nia/configuration#variable_files) or [user-defined metadata](https://consul.io/docs/nia/configuration#cts_user_defined_meta). Mention any [Consul Terraform Sync provided input variables](https://consul.io/docs/nia/terraform-modules#optional-input-variables) that are included. Provide an example configuration for Consul Terraform Sync for your module.
 
 <!-- end -->
 
 | User-defined meta | Required | Description |
 |-------------------|----------|-------------|
 | policy_name | true | The name of an existing policy to apply to the address group for the service |
+
+
+| Provided input variables | Included | Description |
+|-------------------|----------|-------------|
+| catalog_services | true | Consul Terraform Sync provided variable for catalog-services condition |
 
 **User Config for Consul Terraform Sync**
 
@@ -81,6 +86,9 @@ task {
   providers      = ["myprovider"]
   services       = ["web", "app"]
   variable_files = ["task-fw-address-group.tfvars"]
+  condition "catalog-services" {
+    source_includes_var = true
+  }
 }
 
 driver "terraform" {

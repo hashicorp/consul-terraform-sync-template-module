@@ -1,5 +1,6 @@
 #
-# var.services is a required input variable for Consul Terraform Sync
+# var.services is a required input variable for Consul Terraform Sync regardless
+# of the type of task condition
 #
 # An example of the services input value:
 # services = {
@@ -37,6 +38,22 @@ variable "services" {
       cts_user_defined_meta = map(string)
     })
   )
+}
+
+#
+# var.catalog_services is a Consul Terraform Sync provided additional input
+# variable for modules to execute on a catalog-services condition
+#
+# An example of the catalog_services input value:
+# catalog_services = {
+#   "api" = ["blue", "green"]
+#   "consul" = []
+#   "web" = ["tag"]
+# }
+#
+variable "catalog_services" {
+  description = "Consul catalog service names and tags monitored by Consul-Terraform-Sync"
+  type = map(list(string))
 }
 
 #
