@@ -61,7 +61,7 @@ List prerequisites and outline detailed steps in this section for users to setup
 
 <!-- begin template instructions replace -->
 
-Highlight any required [input variables](https://consul-klkdtvr57.vercel.app/docs/nia/configuration#variable_files) or [user-defined metadata](consul.io/docs/nia/configuration#cts_user_defined_meta) and provide an example configuration for Consul Terraform Sync for your module.
+Highlight any required [input variables](https://consul.io/docs/nia/configuration#variable_files) or [user-defined metadata](https://consul.io/docs/nia/configuration#cts_user_defined_meta) and provide an example configuration for Consul Terraform Sync for your module.
 
 <!-- end -->
 
