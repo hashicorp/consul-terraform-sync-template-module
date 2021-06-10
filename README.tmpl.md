@@ -16,7 +16,7 @@ This Terraform module creates an address group for MyProvider Firewall for each 
 
 In this section, describe the feature and set of resources the module manages as well as the expected condition type of a task configured with this module. For example:
 
-The module creates an address group if it does not already exist, and applies an existing policy group to the address group when specified for the service. The module executes on the default services condition, when there are any changes to the instances of the specified services.
+The module creates an service group if it does not already exist and configures registered services as members of the service group. The module executes on the catalog-services condition, such that it updates the service group's members when services register or deregister.
 
 <!-- end -->
 
@@ -65,22 +65,26 @@ Highlight any required [input variables](https://consul.io/docs/nia/configuratio
 
 <!-- end -->
 
-| User-defined meta | Required | Description |
+| Provided input variables | Included | Description |
 |-------------------|----------|-------------|
-| policy_name | true | The name of an existing policy to apply to the address group for the service |
+| catalog_services | true | Consul Terraform Sync provided variable for catalog-services condition |
 
 **User Config for Consul Terraform Sync**
 
 example.hcl
 ```hcl
 task {
-  name           = "fw-address-group"
-  description    = "automate firewall address group with Consul services"
+  name           = "fw-service-group"
+  description    = "automate firewall service group with Consul services"
   source         = "namespace/your-module"
   version        = "0.0.0"
   providers      = ["myprovider"]
-  services       = ["web", "app"]
-  variable_files = ["task-fw-address-group.tfvars"]
+  variable_files = ["task-fw-service-group.tfvars"]
+  condition "catalog-services" {
+    regexp = "web.*"
+    datacenter = "dc1"
+    source_includes_var = true
+  }
 }
 
 driver "terraform" {
@@ -99,21 +103,13 @@ terraform_provider "myprovider" {
     "MYPROVIDER_TOKEN" = "{{ env \"CTS_MYPROVIDER_TOKEN\" }}"
   }
 }
-
-service {
-  name = "app"
-  cts_user_defined_meta = {
-    policy_name = "cts_app_firewall_policy"
-  }
-}
 ```
 
 **Variable file**
 
 Optional input variable file defined by a user for the task above.
 
-task-fw-address-group.tfvars
+task-fw-service-group.tfvars
 ```hcl
-address_group_prefix = "consul-"
-address_group_tags   = ["consul", "consul-terraform-sync"]
+service_group_name = "consul_web_services"
 ```

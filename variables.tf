@@ -1,5 +1,6 @@
 #
-# var.services is a required input variable for Consul Terraform Sync
+# var.services is a required input variable for Consul Terraform Sync regardless
+# of the type of task condition
 #
 # An example of the services input value:
 # services = {
@@ -40,12 +41,28 @@ variable "services" {
 }
 
 #
+# var.catalog_services is a Consul Terraform Sync provided additional input
+# variable for modules to execute on a catalog-services condition
+#
+# An example of the catalog_services input value:
+# catalog_services = {
+#   "api" = ["blue", "green"]
+#   "consul" = []
+#   "web" = ["tag"]
+# }
+#
+variable "catalog_services" {
+  description = "Consul catalog service names and tags monitored by Consul-Terraform-Sync"
+  type = map(list(string))
+}
+
+#
 # Your module for can include input variables to be used by CTS operators for
 # customizing the module based on their infastructure. CTS supports both
 # optional and required variables.
 #
-variable "address_group_prefix" {
-  description = "Prefix added to each address group name"
+variable "service_group_name" {
+  description = "Name of the service group"
   type        = string
 
   # Set the default argument to a default value to declare an optional variable.
@@ -56,10 +73,4 @@ variable "address_group_prefix" {
   # values. When set, Terraform will redact the value from output when Terraform
   # commands are run.
   sensitive = false
-}
-
-variable "address_group_tags" {
-  description = "List of tag names to add to each address group for filtering of Consul service IPs"
-  type        = list(string)
-  default     = []
 }

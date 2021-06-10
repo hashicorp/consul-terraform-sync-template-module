@@ -12,43 +12,12 @@ terraform {
 #
 # Declare resource blocks to describe module behaviors for the infrastructure.
 #
-# The example block below describes creating an address group for each Consul
-# service and applies an existing policy to the group.
+# The example block below describes creating a service group configured with
+# registered Consul services
 #
-resource "myprovider_address_group" "consul_service" {
-  for_each = local.consul_services
+resource "myprovider_service_group" "consul_service" {
+  for_each = var.catalog_services
 
-  name     = "${var.address_group_prefix}${each.key}"
-  tags     = var.address_group_tags
-  policies = [each.value.cts_user_defined_meta["policy_name"]]
-}
-
-#
-# You can utilize the locals block to transform the var.services variable
-# into a data structure for your module. For more examples of common data
-# transformations visit the project wiki.
-#
-# The example below converts var.services to a map of service names to a list
-# of service instances.
-locals {
-  # Create a map of service names to instance IDs to then build
-  # a map of service names to instances
-  consul_service_ids = transpose({
-    for id, s in var.services : id => [s.name]
-  })
-
-  # Group service instances by service name
-  # consul_services = {
-  #   "app" = [
-  #     {
-  #       "id" = "app-id-01"
-  #       "name" = "app"
-  #       "node_address" = "192.168.10.10"
-  #     }
-  #   ]
-  # }
-  consul_services = {
-    for name, ids in local.consul_service_ids :
-    name => [for id in ids : var.services[id]]
-  }
+  name     = var.service_group_name
+  services = [keys(var.catalog_services)]
 }
