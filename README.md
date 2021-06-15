@@ -14,7 +14,7 @@ The template repository includes:
 
 This repository has different branches that can be checked out to see templates for various features that may have different supported variable and documentation recommendations.
  * `main` branch: basic template for default services condition and intermediate input variables
- * `catalog-services-condition-template` branch: template for catalog-service condition
+ * [`catalog-services-condition-template`](https://github.com/hashicorp/consul-terraform-sync-template-module/tree/catalog-services-condition-template) branch: template for catalog-service condition
 
 Visit Terraform documentation for detailed information on [creating modules](https://www.terraform.io/docs/language/modules/develop/index.html) and the [standard module structure](https://www.terraform.io/docs/language/modules/develop/structure.html). Details on Consul Terraform Sync specifications and requirements for modules are outlined in the [official Consul docs](https://www.consul.io/docs/nia/installation/requirements#how-to-create-a-compatible-terraform-module). After you have completed and tested your module, you can share your module by [publishing it on the Terraform Registry](https://www.terraform.io/docs/registry/modules/publish.html) or a [private registry](https://www.terraform.io/docs/registry/private.html).
 
