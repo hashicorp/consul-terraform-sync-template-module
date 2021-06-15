@@ -14,9 +14,9 @@ This Terraform module creates an address group for MyProvider Firewall for each 
 
 <!-- replace template instructions below with your content -->
 
-Describe the feature and set of resources the module manages in this section. For example:
+In this section, describe the feature and set of resources the module manages as well as the expected condition type of a task configured with this module. For example:
 
-The module creates an address group if it does not already exist, and applies an existing policy group to the address group when specified for the service.
+The module creates an address group if it does not already exist, and applies an existing policy group to the address group when specified for the service. The module executes on the default services condition, when there are any changes to the instances of the specified services.
 
 <!-- end -->
 
@@ -61,7 +61,7 @@ List prerequisites and outline detailed steps in this section for users to setup
 
 <!-- begin template instructions replace -->
 
-Highlight any required [input variables](https://consul.io/docs/nia/configuration#variable_files) or [user-defined metadata](https://consul.io/docs/nia/configuration#cts_user_defined_meta) and provide an example configuration for Consul Terraform Sync for your module.
+Highlight any required [input variables](https://consul.io/docs/nia/configuration#variable_files), [user-defined metadata](https://consul.io/docs/nia/configuration#cts_user_defined_meta), or [provided input variables](https://consul.io/docs/nia/terraform-modules#optional-input-variables) and provide an example configuration for Consul Terraform Sync for your module.
 
 <!-- end -->
 
