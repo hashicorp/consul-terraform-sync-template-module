@@ -31,12 +31,6 @@ resource "myprovider_address_group" "consul_service" {
 # The example below converts var.services to a map of service names to a list
 # of service instances.
 locals {
-  # Create a map of service names to instance IDs to then build
-  # a map of service names to instances
-  consul_service_ids = transpose({
-    for id, s in var.services : id => [s.name]
-  })
-
   # Group service instances by service name
   # consul_services = {
   #   "app" = [
@@ -48,7 +42,6 @@ locals {
   #   ]
   # }
   consul_services = {
-    for name, ids in local.consul_service_ids :
-    name => [for id in ids : var.services[id]]
+    for id, s in var.services : s.name => s...
   }
 }
