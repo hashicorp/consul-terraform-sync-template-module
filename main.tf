@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
 terraform {
   required_providers {
     # Provider source is used for Terraform discovery and installation of

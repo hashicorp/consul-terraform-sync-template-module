@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
 #
 # var.services is a required input variable for Consul Terraform Sync
 #
